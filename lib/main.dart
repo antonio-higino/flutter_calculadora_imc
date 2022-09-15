@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
       title: "Calculadora de IMC",
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.purple),
       home: Home()));
 }
 
 class Home extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   TextEditingController pesoController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -52,14 +52,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: Text.("Calculadora de IMC"),
-      centerTitle: true,
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.refresh), 
-          onPressed: _resetCampos
-          )
-      ],
+        title: Text("Calculadora de IMC"),
+        centerTitle: true,
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.refresh), onPressed: _resetCampos)
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
@@ -68,17 +65,17 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Icon(Icons.person, size: 120, color: Colors.green),
+              Icon(Icons.person, size: 120, color: Colors.purple),
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelText: "Peso (Kg)",
-                  labelStyle: TextStyle(color: Colors.green)),
+                    labelText: "Peso (Kg)",
+                    labelStyle: TextStyle(color: Colors.purple)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.green, fontSize: 25.0),
+                style: TextStyle(color: Colors.purple, fontSize: 25.0),
                 controller: pesoController,
                 validator: (value) {
-                  if (value.isEmpty)
+                  if (value!.isEmpty)
                     return "Insira seu peso!";
                   else
                     return null;
@@ -87,13 +84,13 @@ class _HomeState extends State<Home> {
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  labelText: "Altura (cm)",
-                  labelStyle: TextStyle(color: Colors.green)),
+                    labelText: "Altura (cm)",
+                    labelStyle: TextStyle(color: Colors.purple)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.green, fontSize: 25.0),
+                style: TextStyle(color: Colors.purple, fontSize: 25.0),
                 controller: alturaController,
                 validator: (value) {
-                  if (value.isEmpty)
+                  if (value!.isEmpty)
                     return "Insira sua altura!";
                   else
                     return null;
@@ -102,23 +99,21 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: ButtonTheme(
-                  height: 50.0,
-                  highlightColor: Colors.red,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState.validate()) _calcular();
-                    },
-                    child: Text(
-                      "Calcular",
-                      style: TextStyle(color: Colors.white, fontSize: 25.0)
-                    ),
-                  )
-                ),
+                    height: 50.0,
+                    highlightColor: Colors.red,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) _calcular();
+                      },
+                      child: Text("Calcular",
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 25.0)),
+                    )),
               ),
               Text(
                 _textInfo,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.green, fontSize: 25.0),
+                style: TextStyle(color: Colors.purple, fontSize: 25.0),
               )
             ],
           ),
